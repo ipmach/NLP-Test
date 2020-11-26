@@ -49,11 +49,13 @@ try:
     db = Mongo_db(user, pwd)
     persons = db.get_persons()
     responds_ = db.get_sentences()
-    df = db.get_Text()[:2]
+    df = db.get_Text()
 except:
     cprint("Wrong user or password :(", 'red')
     exit()
+
 random.shuffle(df)
+df = df[:20]
 
 ### PRINT INSTRUCTIONS
 logo = open("logo.txt", "r")
