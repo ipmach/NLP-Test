@@ -99,6 +99,8 @@ try:
     responds2 = []
     for i in range(len(df)):
         cprint("Question " + str(i + 1), 'blue')
+        cprint("Author:", 'green')
+        print("    "  +  df[i]['Person'])
         cprint("Sentences:", 'green')
         print('########################################################################################################################')
         print(df[i]['Sentences'])
