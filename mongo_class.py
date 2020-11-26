@@ -1,5 +1,4 @@
 import pymongo
-import datetime
 import ssl
 
 class Mongo_db:
@@ -33,15 +32,9 @@ class Mongo_db:
         return text
 
     def insert_Test_1(self, data):
-        time = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
         data = dict(data)
-        data['Time'] = time
-        data['User'] = self.user
         self.db.Test_1.insert_one(data)
 
     def insert_Test_2(self, data):
-        time = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
         data = dict(data)
-        data['Time'] = time
-        data['User'] = self.user
         self.db.Test_2.insert_one(data)
