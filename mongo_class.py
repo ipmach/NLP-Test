@@ -15,9 +15,11 @@ class Mongo_db:
 
     def get_persons(self):
         persons = []
+        short = []
         for document in self.db.Person.find():
             persons.append(document["Name"])
-        return persons
+            short.append(document["Short"])
+        return persons, short
 
     def get_sentences(self):
         sentences = []

@@ -47,7 +47,7 @@ try:
     user = input("User: ")
     pwd = input("Pasword: ")
     db = Mongo_db(user, pwd)
-    persons = db.get_persons()
+    persons, short = db.get_persons()
     responds_ = db.get_sentences()
     df = db.get_Text()
 except:
@@ -60,8 +60,8 @@ df = df[:20]
 ### PRINT INSTRUCTIONS
 logo = open("logo.txt", "r")
 print(logo.read())
-for p in persons:
-    print("    - " + p)
+for p, s in zip(persons, short):
+    print("    - " + p + " (" + s + ")")
 print('')
 print('########################################################################################################################')
 
@@ -80,10 +80,10 @@ try:
         print('########################################################################################################################')
         while True:
             cprint("Who you think is:", 'green')
-            for p in persons:
-                print("    - " + p)
+            for p, s in zip(persons, short):
+                print("    - " + p + " (" + s + ")")
             aux = input("Type answer: ")
-            if aux in persons:
+            if aux in persons or aux in short:
                 responds.append(aux)
                 a = np.random.choice(len(responds_))
                 cprint(responds_[a], 'cyan')
