@@ -55,7 +55,7 @@ except:
     exit()
 
 random.shuffle(df)
-df = df[:20]
+df = df[:100]
 
 ### PRINT INSTRUCTIONS
 logo = open("logo.txt", "r")
