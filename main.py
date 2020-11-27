@@ -55,7 +55,7 @@ except:
     exit()
 
 random.shuffle(df)
-df = df[:100]
+df = df[:2]
 
 ### PRINT INSTRUCTIONS
 logo = open("logo.txt", "r")
@@ -84,6 +84,8 @@ try:
                 print("    - " + p + " (" + s + ")")
             aux = input("Type answer: ")
             if aux in persons or aux in short:
+                if aux in short:
+                    aux = persons[short.index(aux)]
                 responds.append(aux)
                 a = np.random.choice(len(responds_))
                 cprint(responds_[a], 'cyan')
@@ -93,6 +95,7 @@ try:
                 cprint(d.read(), 'blue')
             cprint("You have to type one of the options", "yellow")
         print('########################################################################################################################')
+
 
     ### TEST 2
     cprint("Second Test: How good I did it?", 'blue')
@@ -132,6 +135,7 @@ try:
     test_1 = Test_1(responds, df)
     print(tabulate(test_1, ["Type", "Porcentage [0-1]"], tablefmt="fancy_grid"))
     db.insert_Test_1(test_1)
+
 
     cprint("Results from Test 2", 'blue')
     test_2 = Test_2(responds2)
