@@ -54,8 +54,8 @@ except:
     cprint("Wrong user or password :(", 'red')
     exit()
 
-random.shuffle(df)
-df = df[:2]
+random.shuffle(df) # Shuffle sentences
+df = df[:100] # Set number tests
 
 ### PRINT INSTRUCTIONS
 logo = open("logo.txt", "r")
