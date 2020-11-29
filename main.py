@@ -29,6 +29,27 @@ def Test_1(responds, df):
 
     return data.items()
 
+def Test_1a(responds, df):
+    data = {}
+    total_data = {}
+    for i in persons:
+        data[i] = {}
+        total_data[i] = 0
+        for j in persons:
+            data[i][j] = 0
+    for i in range(len(responds)):
+        aux = df[i]['Person']
+        data[aux][responds[i]] += 1
+        total_data[aux] += 1
+    data2 = {}
+    for i in data:
+        for j in persons:
+            if total_data[i] > 0:
+                data2[i + "-" + j] = data[i][j] / total_data[i]
+    return data2.items()
+
+
+
 def Test_2(responds):
     data = {}
     for i in persons:
@@ -55,7 +76,7 @@ except:
     exit()
 
 random.shuffle(df) # Shuffle sentences
-df = df[:100] # Set number tests
+df = df[:30] # Set number tests
 
 ### PRINT INSTRUCTIONS
 logo = open("logo.txt", "r")
@@ -96,7 +117,7 @@ try:
             cprint("You have to type one of the options", "yellow")
         print('########################################################################################################################')
 
-
+    """
     ### TEST 2
     cprint("Second Test: How good I did it?", 'blue')
     responds2 = []
@@ -129,18 +150,21 @@ try:
                 cprint(d.read(), 'blue')
             cprint("You have to put a number between 0 - 10", "yellow")
         print('########################################################################################################################')
-
+    """
     ### PLOT RESULTS
     cprint("Results from Test 1", 'blue')
     test_1 = Test_1(responds, df)
     print(tabulate(test_1, ["Type", "Porcentage [0-1]"], tablefmt="fancy_grid"))
+    test_1a = Test_1a(responds, df)
+    print(tabulate(test_1a, ["Type", "Porcentage [0-1]"], tablefmt="fancy_grid"))
+    test_1 = dict(test_1)
+    test_1.update(test_1a)
     db.insert_Test_1(test_1)
 
-
-    cprint("Results from Test 2", 'blue')
-    test_2 = Test_2(responds2)
-    print(tabulate(test_2, ["Person", "Average"], tablefmt="fancy_grid"))
-    db.insert_Test_2(test_2)
+    #cprint("Results from Test 2", 'blue')
+    #test_2 = Test_2(responds2)
+    #print(tabulate(test_2, ["Person", "Average"], tablefmt="fancy_grid"))
+    #db.insert_Test_2(test_2)
 
     cprint("Thanks for participate :D", 'blue')
 except KeyboardInterrupt:
