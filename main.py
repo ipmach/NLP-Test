@@ -117,7 +117,7 @@ try:
             cprint("You have to type one of the options", "yellow")
         print('########################################################################################################################')
 
-    """
+
     ### TEST 2
     cprint("Second Test: How good I did it?", 'blue')
     responds2 = []
@@ -150,7 +150,7 @@ try:
                 cprint(d.read(), 'blue')
             cprint("You have to put a number between 0 - 10", "yellow")
         print('########################################################################################################################')
-    """
+
     ### PLOT RESULTS
     cprint("Results from Test 1", 'blue')
     test_1 = Test_1(responds, df)
@@ -161,10 +161,10 @@ try:
     test_1.update(test_1a)
     db.insert_Test_1(test_1)
 
-    #cprint("Results from Test 2", 'blue')
-    #test_2 = Test_2(responds2)
-    #print(tabulate(test_2, ["Person", "Average"], tablefmt="fancy_grid"))
-    #db.insert_Test_2(test_2)
+    cprint("Results from Test 2", 'blue')
+    test_2 = Test_2(responds2)
+    print(tabulate(test_2, ["Person", "Average"], tablefmt="fancy_grid"))
+    db.insert_Test_2(test_2)
 
     cprint("Thanks for participate :D", 'blue')
 except KeyboardInterrupt:
